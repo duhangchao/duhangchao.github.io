@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>聚优名品 | 尊享品质生活</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f7fafc 0%, #edf2f7 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Roboto', 'Microsoft YaHei', 'PingFang SC', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 优雅背景装饰 (半透明光晕) */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(circle at 30% 20%, rgba(255,215,150,0.2), rgba(255,255,245,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 主卡片 - 现代玻璃质感 + 精致阴影 */
+        .hero-card {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(0px);
+            border-radius: 4rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255,255,255,0.6);
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        /* 欢迎语核心容器 - Flex 优雅居中，支持响应换行 */
+        .welcome-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+            gap: 0.4rem 1.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* 通用文字样式：现代优雅，深灰色基调 */
+        .greeting, .site {
+            font-weight: 500;
+            color: #1e2a3e;
+            letter-spacing: -0.01em;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+            transition: transform 0.2s ease;
+        }
+
+        /* 欢迎光临 & 网站 标准字体大小 (醒目但谦让主角) */
+        .greeting {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            line-height: 1.3;
+        }
+
+        .site {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            line-height: 1.3;
+        }
+
+        /* 核心主角 —— 聚优名品 巨大、突出、尊贵感 */
+        .brand {
+            font-size: clamp(3.2rem, 11vw, 6.2rem);
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            background: linear-gradient(135deg, #c4451b, #e67e22, #f39c12);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 20px rgba(230, 126, 34, 0.25);
+            display: inline-block;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            position: relative;
+            white-space: nowrap;
+            line-height: 1.2;
+            padding: 0 0.1rem;
+        }
+
+        /* 强化视觉焦点：增加轻微底纹及悬浮动效 */
+        .brand:hover {
+            transform: scale(1.02);
+            text-shadow: 0 8px 28px rgba(230, 126, 34, 0.4);
+            background: linear-gradient(135deg, #b33b12, #e06e1a, #ffb347);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        /* 为品牌字增加一个优雅的装饰下划线 / 光晕 (可选但提升精致感) */
+        .brand::after {
+            content: '';
+            position: absolute;
+            bottom: 0.1em;
+            left: 0;
+            width: 100%;
+            height: 0.08em;
+            background: linear-gradient(90deg, transparent, #e67e22, #f39c12, #e67e22, transparent);
+            border-radius: 1em;
+            opacity: 0.6;
+            transform: scaleX(0.85);
+            transition: opacity 0.2s;
+        }
+
+        /* 点睛副标：增加品牌氛围，但绝不抢主视觉 */
+        .tagline {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            color: #4b5563;
+            letter-spacing: 0.03em;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .tagline span {
+            background: rgba(230, 126, 34, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            font-weight: 450;
+        }
+
+        .tagline i {
+            font-style: normal;
+            display: inline-block;
+            animation: gentlePulse 2s infinite;
+        }
+
+        /* 小装饰点缀 */
+        .deco-star {
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        /* 响应式细节：手机端卡片内边距缩小，确保布局舒适 */
+        @media (max-width: 640px) {
+            .hero-card {
+                padding: 2rem 1.2rem;
+                border-radius: 2.5rem;
+            }
+            
+            .welcome-container {
+                gap: 0.6rem 0.8rem;
+            }
+            
+            .brand {
+                white-space: normal;      /* 极窄屏允许换行，但四个字作为一个整体保留完整性 */
+                word-break: keep-all;
+            }
+            
+            .brand::after {
+                bottom: -0.05em;
+            }
+        }
+
+        /* 额外小屏适配 (例如折叠屏) */
+        @media (max-width: 380px) {
+            .greeting, .site {
+                font-size: 1.6rem;
+            }
+            .brand {
+                font-size: 2.6rem;
+            }
+        }
+
+        /* 优雅渐隐入场动画 */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-card {
+            animation: fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+
+        /* 柔和脉冲动画用于装饰图标 */
+        @keyframes gentlePulse {
+            0% { opacity: 0.6; transform: scale(1);}
+            50% { opacity: 1; transform: scale(1.05);}
+            100% { opacity: 0.6; transform: scale(1);}
+        }
+
+        /* 可选: 增加光标友好效果 */
+        .brand, .greeting, .site {
+            user-select: none;
+        }
+        
+        /* 高亮且不失品质的响应交互 */
+        .hero-card:hover {
+            box-shadow: 0 30px 50px -18px rgba(0, 0, 0, 0.25);
+            transition: box-shadow 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero-card">
+    <!-- 核心欢迎语区域，完全满足“欢迎光临聚优名品网站” 且聚优名品极致突出 -->
+    <div class="welcome-container">
+        <span class="greeting">欢迎光临</span>
+        <span class="brand">聚优名品</span>
+        <span class="site">网站</span>
+    </div>
+
+    <!-- 优雅的辅助文案，烘托品牌质感，不干扰主视觉 -->
+    <div class="tagline">
+        <span>✨ 甄选全球好物 · 尊享品质生活 ✨</span>
+        <span class="deco-star">✦ 匠心优品 ✦</span>
+    </div>
+</div>
+
+</body>
+</html>
