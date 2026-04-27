@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>聚优名品 | 甄选优品·特惠矩阵 | 官方客服微信</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f7fafc 0%, #edf2f7 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Roboto', 'Microsoft YaHei', 'PingFang SC', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(circle at 30% 20%, rgba(255,215,150,0.2), rgba(255,255,245,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-card {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(0px);
+            border-radius: 4rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255,255,255,0.6);
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .welcome-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+            gap: 0.4rem 1.2rem;
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+
+        .greeting, .site {
+            font-weight: 500;
+            color: #1e2a3e;
+            letter-spacing: -0.01em;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+        }
+
+        .greeting {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            line-height: 1.3;
+        }
+
+        .site {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            line-height: 1.3;
+        }
+
+        .brand {
+            font-size: clamp(3.2rem, 11vw, 6.2rem);
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            background: linear-gradient(135deg, #c4451b, #e67e22, #f39c12);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 20px rgba(230, 126, 34, 0.25);
+            display: inline-block;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            position: relative;
+            white-space: nowrap;
+            line-height: 1.2;
+            padding: 0 0.1rem;
+        }
+
+        .brand:hover {
+            transform: scale(1.02);
+            text-shadow: 0 8px 28px rgba(230, 126, 34, 0.4);
+            background: linear-gradient(135deg, #b33b12, #e06e1a, #ffb347);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .brand::after {
+            content: '';
+            position: absolute;
+            bottom: 0.1em;
+            left: 0;
+            width: 100%;
+            height: 0.08em;
+            background: linear-gradient(90deg, transparent, #e67e22, #f39c12, #e67e22, transparent);
+            border-radius: 1em;
+            opacity: 0.6;
+            transform: scaleX(0.85);
+        }
+
+        .tagline {
+            text-align: center;
+            margin-top: 1rem;
+            padding-bottom: 0.8rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            color: #4b5563;
+            letter-spacing: 0.03em;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+            padding-bottom: 1.2rem;
+        }
+
+        .tagline span {
+            background: rgba(230, 126, 34, 0.08);
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            font-weight: 450;
+        }
+
+        .shop-section {
+            margin-top: 2rem;
+            padding-top: 0.5rem;
+        }
+
+        .shop-heading {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #2c3e4e;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .shop-heading::before,
+        .shop-heading::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e67e2240, #e67e2240, transparent);
+        }
+
+        .shop-heading span {
+            background: #fef3e8;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #c4451b;
+        }
+
+        .shop-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .shop-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 248, 240, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            padding: 0.9rem 1.5rem;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(230, 126, 34, 0.2);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .shop-item:hover {
+            background: #fffaf5;
+            border-color: #e67e2260;
+            box-shadow: 0 8px 18px -8px rgba(230, 126, 34, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .shop-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e4f;
+            letter-spacing: -0.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .shop-name::before {
+            content: '🛍️';
+            font-size: 1.2rem;
+        }
+
+        .shop-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 3rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #c4451b;
+            text-decoration: none;
+            border: 1px solid #e67e2240;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .shop-link:hover {
+            background: #e67e22;
+            color: white;
+            border-color: #e67e22;
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+            transform: scale(1.02);
+        }
+
+        .shop-link:active {
+            transform: scale(0.98);
+        }
+
+        .shop-link::after {
+            content: '🔗';
+            font-size: 0.85rem;
+            transition: transform 0.2s;
+        }
+
+        .shop-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        .advantage-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2.2rem 0 0.8rem;
+            position: relative;
+        }
+
+        .adv-item {
+            background: linear-gradient(125deg, #fffaf2, #fff7ef);
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #b64926;
+            border: 1px solid rgba(230, 126, 34, 0.35);
+            box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(2px);
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            letter-spacing: 0.3px;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .adv-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,215,140,0.2), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            border-radius: 60px;
+        }
+
+        .adv-item:hover::before {
+            opacity: 1;
+        }
+
+        .adv-item:hover {
+            background: #e67e22;
+            color: white;
+            border-color: #e67e22;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 18px -10px rgba(230, 126, 34, 0.4);
+        }
+
+        .customer-service {
+            margin-top: 1.8rem;
+            padding-top: 0.6rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        /* 二维码卡片统一样式 (展示真实图片，增大尺寸，点击放大) */
+        .qr-card {
+            background: linear-gradient(115deg, #fffaf2 0%, #fff5e8 100%);
+            border-radius: 2rem;
+            padding: 1.2rem 1rem;
+            border: 1px solid rgba(230, 126, 34, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: all 0.25s ease;
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 0.65rem;
+        }
+
+        .qr-card:hover {
+            border-color: #e67e22;
+            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .service-label {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #b64926;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(230,126,34,0.12);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+
+        .service-label::before {
+            content: '👩‍💼';
+            font-size: 1.2rem;
+        }
+
+        .service-note {
+            font-size: 0.85rem;
+            background: #eef2f5;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            color: #5a626e;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .service-note::before {
+            content: '📱';
+            font-size: 0.9rem;
+        }
+
+        .qr-code-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0.25rem 0;
+            cursor: pointer;
+        }
+
+        .qr-code-wrapper img {
+            width: 160px;
+            height: 160px;
+            border-radius: 24px;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+            border: 1px solid rgba(230, 126, 34, 0.3);
+            object-fit: contain;
+            display: block;
+        }
+
+        .qr-card:hover .qr-code-wrapper img {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.2);
+            border-color: #e67e22;
+        }
+
+        .expiry-tip {
+            font-size: 0.7rem;
+            background: rgba(0,0,0,0.04);
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            color: #b64926;
+            margin-top: 0.2rem;
+            display: inline-block;
+        }
+
+        /* ---------- 模态框 (大图预览) ---------- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: #fff;
+            border-radius: 2rem;
+            padding: 1rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .modal-content img {
+            width: auto;
+            max-width: 70vw;
+            max-height: 70vh;
+            border-radius: 1.5rem;
+            background: white;
+            padding: 12px;
+            box-shadow: 0 0 0 2px rgba(230,126,34,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #e67e22;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .close-modal:hover {
+            background: #c4451b;
+            transform: scale(1.05);
+        }
+
+        .modal-caption {
+            margin-top: 0.8rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2c3e4e;
+            background: #fff5eb;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .official-url-section {
+            margin-top: 1.8rem;
+            padding-top: 1rem;
+            text-align: center;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        .url-card {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.7rem 1.2rem;
+            background: rgba(255, 251, 245, 0.9);
+            backdrop-filter: blur(2px);
+            padding: 0.6rem 1.4rem;
+            border-radius: 3rem;
+            border: 1px solid rgba(230, 126, 34, 0.25);
+            transition: all 0.25s ease;
+        }
+
+        .url-card:hover {
+            background: #fffaf2;
+            border-color: #e67e22;
+            box-shadow: 0 6px 14px rgba(230, 126, 34, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .url-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #b64926;
+            background: rgba(230, 126, 34, 0.08);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .url-label::before {
+            content: '🌐';
+            font-size: 1rem;
+        }
+
+        .url-display {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #c4451b;
+            background: #ffffffdd;
+            padding: 0.3rem 1rem;
+            border-radius: 3rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(230,126,34,0.2);
+            word-break: break-all;
+        }
+
+        .url-display:hover {
+            background: #e67e22;
+            color: white;
+            border-color: #e67e22;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(230,126,34,0.25);
+        }
+
+        .footer-legal {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.75rem;
+            color: #6c7a89;
+        }
+
+        .footer-legal p {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .footer-legal a {
+            color: #c4451b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-legal a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: linear-gradient(90deg, #e67e22, #f39c12);
+            transition: width 0.25s ease-out;
+            border-radius: 2px;
+        }
+
+        .footer-legal a:hover::after {
+            width: 100%;
+        }
+
+        .footer-legal .disclaimer {
+            font-size: 0.7rem;
+            opacity: 0.75;
+            background: rgba(230, 126, 34, 0.04);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+
+        /* 响应式调整二维码尺寸 */
+        @media (max-width: 640px) {
+            .hero-card {
+                padding: 2rem 1.2rem;
+                border-radius: 2.5rem;
+            }
+            .brand {
+                white-space: normal;
+                word-break: keep-all;
+            }
+            .shop-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                padding: 1rem 1.2rem;
+            }
+            .shop-link {
+                align-self: flex-start;
+            }
+            .customer-service {
+                gap: 1rem;
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
+            .qr-code-wrapper img {
+                width: 130px;
+                height: 130px;
+                padding: 6px;
+            }
+            .official-url-section .url-card {
+                flex-direction: column;
+                padding: 0.8rem 1.2rem;
+                gap: 0.6rem;
+                width: 100%;
+            }
+            .url-display {
+                font-size: 0.85rem;
+                word-break: break-all;
+                text-align: center;
+            }
+            .footer-legal {
+                margin-top: 2rem;
+                padding-top: 1rem;
+                font-size: 0.7rem;
+            }
+            .modal-content img {
+                max-width: 85vw;
+                max-height: 70vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .greeting, .site {
+                font-size: 1.6rem;
+            }
+            .brand {
+                font-size: 2.6rem;
+            }
+            .shop-name {
+                font-size: 1rem;
+            }
+            .shop-link {
+                font-size: 0.8rem;
+                padding: 0.4rem 1rem;
+            }
+            .qr-code-wrapper img {
+                width: 120px;
+                height: 120px;
+                padding: 5px;
+            }
+            .url-display {
+                font-size: 0.8rem;
+            }
+            .advantage-grid {
+                gap: 0.7rem;
+            }
+            .adv-item {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-card {
+            animation: fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+
+        .deco-star {
+            animation: gentlePulse 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes gentlePulse {
+            0% { opacity: 0.6; transform: scale(1);}
+            50% { opacity: 1; transform: scale(1.05);}
+            100% { opacity: 0.6; transform: scale(1);}
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero-card">
+    <!-- 核心欢迎语 -->
+    <div class="welcome-container">
+        <span class="greeting">欢迎光临</span>
+        <span class="brand">聚优名品</span>
+        <span class="site">网站</span>
+    </div>
+
+    <!-- 品质标语 -->
+    <div class="tagline">
+        <span>✨ 甄选全球好物 · 尊享品质生活 ✨</span>
+        <span class="deco-star">✦ 匠心优品 ✦</span>
+    </div>
+
+    <!-- 三个网店区块 (官方直营店链接) -->
+    <div class="shop-section">
+        <div class="shop-heading">
+            <span>📢 官方直营店 · 点击直达</span>
+        </div>
+        <div class="shop-list">
+            <div class="shop-item">
+                <div class="shop-name">聚优名品-折扣店</div>
+                <a href="https://k.youshop10.com/LgYz4i42" class="shop-link" target="_blank" rel="noopener noreferrer">立即进店</a>
+            </div>
+            <div class="shop-item">
+                <div class="shop-name">聚优甄选(新店超低价)</div>
+                <a href="https://k.youshop10.com/eI9PlqBB" class="shop-link" target="_blank" rel="noopener noreferrer">立即进店</a>
+            </div>
+            <div class="shop-item">
+                <div class="shop-name">聚优臻品-特价仓</div>
+                <a href="https://k.youshop10.com/SLlORiHM" class="shop-link" target="_blank" rel="noopener noreferrer">立即进店</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 服务保障承诺网格 -->
+    <div class="advantage-grid">
+        <div class="adv-item">✅ 正品保障</div>
+        <div class="adv-item">🚚 极速发货</div>
+        <div class="adv-item">🛡️ 7天无理由</div>
+        <div class="adv-item">💎 官方授权</div>
+    </div>
+
+    <!-- ========= 客服区域：微信客服 + 公众号 + 福利群（三个卡片网格，二维码支持点击放大） ========= -->
+    <div class="customer-service">
+        <!-- 微信个人客服二维码 + 点击放大 -->
+        <div class="qr-card" data-img-src="聚优名品微信二维码.jpg" data-alt="微信客服二维码">
+            <div class="service-label" style="background:rgba(230,126,34,0.12);">📱 微信客服</div>
+            <div class="qr-code-wrapper">
+                <img src="聚优名品微信二维码.jpg" 
+                     alt="微信客服二维码 - 添加聚优名品官方客服"
+                     onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22160%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23fef3e8%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%23c4451b%22%20font-size%3D%2212%22%20font-family%3D%22system-ui%22%3E扫码加微信%3C%2Ftext%3E%3C%2Fsvg%3E';">
+            </div>
+            <div class="service-note">扫码领新人礼包 · 一对一服务</div>
+        </div>
+
+        <!-- 官方公众号二维码 + 点击放大 -->
+        <div class="qr-card" data-img-src="聚优名品公众号二维码.jpg" data-alt="官方公众号二维码">
+            <div class="service-label" style="background:rgba(230,126,34,0.12);">📰 官方公众号</div>
+            <div class="qr-code-wrapper">
+                <img src="聚优名品公众号二维码.jpg" 
+                     alt="聚优名品臻选公众号二维码"
+                     onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22160%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23fef3e8%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%23c4451b%22%20font-size%3D%2212%22%20font-family%3D%22system-ui%22%3E关注公众号%3C%2Ftext%3E%3C%2Fsvg%3E';">
+            </div>
+            <div class="service-note">扫码关注 获取新品/优惠推送</div>
+        </div>
+
+        <!-- 福利群二维码 + 点击放大 -->
+        <div class="qr-card" data-img-src="聚优名品福利群二维码.jpg" data-alt="福利群二维码">
+            <div class="service-label" style="background:rgba(230,126,34,0.12);">🎁 福利群 · 红包雨</div>
+            <div class="qr-code-wrapper">
+                <img src="聚优名品福利群二维码.jpg" 
+                     alt="聚优名品福利3群二维码 (7天内有效)"
+                     onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22160%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23fef3e8%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%23c4451b%22%20font-size%3D%2212%22%20font-family%3D%22system-ui%22%3E福利群%3C%2Ftext%3E%3C%2Fsvg%3E';">
+            </div>
+            <div class="service-note">扫码进群 享限时红包/特价</div>
+            <span class="expiry-tip">⏰ 7天有效，尽快加入 (5月4日前)</span>
+        </div>
+    </div>
+
+    <!-- 官方网址区块 -->
+    <div class="official-url-section">
+        <div class="url-card">
+            <span class="url-label">官方网址</span>
+            <a href="https://8shop.github.io" target="_blank" rel="noopener noreferrer" class="url-display">https://8shop.github.io</a>
+        </div>
+    </div>
+
+    <!-- 底部法律区块 -->
+    <div class="footer-legal">
+        <p>© 2026 聚优名品 版权所有 | <a href="javascript:void(0)" rel="nofollow">隐私政策</a> | <a href="javascript:void(0)" rel="nofollow">用户协议</a></p>
+        <p class="disclaimer">本平台仅提供信息展示，商品交易跳转至第三方店铺 | 客服及福利群由官方统一运营</p>
+    </div>
+</div>
+
+<!-- 模态框 (大图预览) -->
+<div id="qrModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <img id="modalImg" src="" alt="二维码大图">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // 点击二维码卡片，弹出大图模态框，提升扫码成功率
+        const qrCards = document.querySelectorAll('.qr-card');
+        const modal = document.getElementById('qrModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeModalBtn = document.querySelector('.close-modal');
+
+        function openModal(imgSrc, altText) {
+            if (!imgSrc) return;
+            modalImg.src = imgSrc;
+            modalImg.alt = altText || '二维码';
+            // 根据卡片类型显示提示
+            let tipText = '';
+            if (altText.includes('微信客服')) tipText = '微信客服二维码 - 长按识别添加好友';
+            else if (altText.includes('公众号')) tipText = '官方公众号二维码 - 长按识别关注';
+            else if (altText.includes('福利')) tipText = '福利群二维码 - 长按识别进群';
+            else tipText = '点击图片可长按识别二维码';
+            modalCaption.textContent = tipText;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            modalImg.src = '';
+        }
+
+        // 为每个二维码包装区域绑定点击事件 (点击 .qr-code-wrapper 或 整个卡片区域)
+        qrCards.forEach(card => {
+            const wrapper = card.querySelector('.qr-code-wrapper');
+            const imgElem = card.querySelector('.qr-code-wrapper img');
+            if (!imgElem) return;
+            const imgSrc = imgElem.getAttribute('src');
+            const altText = imgElem.getAttribute('alt') || card.getAttribute('data-alt') || '二维码';
+            const clickHandler = (e) => {
+                e.stopPropagation();
+                if (imgSrc && !imgSrc.includes('data:image/svg')) {
+                    openModal(imgSrc, altText);
+                } else {
+                    // 如果图片是 fallback 占位符，仍尝试打开（但一般不会）
+                    openModal(imgSrc, altText);
+                }
+            };
+            if (wrapper) {
+                wrapper.addEventListener('click', clickHandler);
+                wrapper.style.cursor = 'pointer';
+            } else {
+                card.addEventListener('click', clickHandler);
+            }
+        });
+
+        // 关闭模态框：点击X或者点击背景
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // 阻止模态框内容点击冒泡关闭
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) modalContent.addEventListener('click', (e) => e.stopPropagation());
+
+        // 控制台友好提醒图片文件问题（不影响使用）
+        const imgs = document.querySelectorAll('.qr-code-wrapper img');
+        imgs.forEach(img => {
+            img.addEventListener('error', function() {
+                console.log('温馨提示：请确保二维码图片文件（聚优名品微信二维码.jpg、聚优名品公众号二维码.jpg、聚优名品福利群二维码.jpg）与网页在同一目录下，即可正常扫码。点击二维码可查看大图。');
+            });
+        });
+    })();
+</script>
+</body>
+</html>
